@@ -39,5 +39,13 @@ RSpec.describe "/", type: :feature do
       expect(page).to have_content("#{@picard.name}")
       expect(page).to_not have_content("#{@riker.name}")
     end
+    
+    it 'has a link to the login page' do
+      expect(page).to have_link("Log In")
+      
+      click_link("Log In")
+      
+      expect(current_path).to eq(login_path)
+    end
   end
 end
