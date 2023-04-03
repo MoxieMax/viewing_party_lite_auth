@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "/", type: :feature do
   describe "as a user, when I visit the landing page" do 
-    before :each do
-      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com")
-      @riker = User.create!(name: "William Riker", email: "number2@uss-enterprise.com")
-      @data = User.create!(name: "Data", email: "data@uss-enterprise.com")
+    before :each do 
+      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com", password: "password123")
+      @riker = User.create!(name: "William Riker", email: "number2@uss-enterprise.com", password: "password123")
+      @data = User.create!(name: "Data", email: "data@uss-enterprise.com", password: "password123")
 
       visit "/"
     end

@@ -12,6 +12,14 @@
       <td> <%= f.text_field :email %> </td>
     </tr>
     <tr>
+      <%= f.label :password, 'Password:' %>
+      <%= f.password_field :password %>
+    </tr>
+    <tr>
+      <%= f.label :password_confirmation, 'Password Confirmation:' %>
+      <%= f.password_field :password_confirmation %>
+    </tr>
+    <tr>
       <td> <%= f.submit "Create New User" %> </td>
     </tr>
     <% end %>

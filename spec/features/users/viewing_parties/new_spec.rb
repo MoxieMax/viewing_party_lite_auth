@@ -9,16 +9,24 @@ RSpec.describe "/users/:id/movies/:movie_id/viewing_party/new" do
     
       @user1 = User.create!(id: 1,
                             name: "Gideon Nav", 
-                            email: "cav-life@ninth.net")
+                            email: "cav-life@ninth.net",
+                            password: 'password123'
+                          )
       @user2 = User.create!(id: 2,
                             name: "Harrowhark Nonagesimus", 
-                            email: "revdaughter@ninth.net")
+                            email: "revdaughter@ninth.net",
+                            password: 'password123'
+                          )
       @user3 = User.create!(id: 3,
                             name: "Ianthe Tridentarius", 
-                            email: "archenemy@third.com")
+                            email: "archenemy@third.com",
+                            password: 'password123'
+                          )
       @user4 = User.create!(id: 4,
                             name: "Coronabeth Tridentarius", 
-                            email: "goldenchild@third.com")
+                            email: "goldenchild@third.com",
+                            password: 'password123'
+                          )
     
       @movie_response = File.read("spec/fixtures/moviedb/space_odyssey.json")
       stub_request(:get, "https://api.themoviedb.org/3/movie/62?api_key=#{ENV["TMDB_API_KEY"]}")

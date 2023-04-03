@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "/users/:id", type: :feature do
   describe "as a user, when I visit my user show page/dashboard" do 
     before :each do
-      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com")
-      @riker = User.create!(name: "William Riker", email: "number2@uss-enterprise.com")
-      @data = User.create!(name: "Data", email: "data@uss-enterprise.com")
+      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com", password: 'password123')
+      @riker = User.create!(name: "William Riker", email: "number2@uss-enterprise.com", password: 'password123')
+      @data = User.create!(name: "Data", email: "data@uss-enterprise.com", password: 'password123')
 
       @party1 = Party.create!(duration_minutes: 143, start_time: "08:00", date: Date.parse("2023-01-01"), movie_id: 2001, host_id: @picard.id)
       @party2 = Party.create!(duration_minutes: 90, start_time: "10:30", date: Date.parse("2023-02-02"), movie_id: 1999, host_id: @riker.id)
@@ -15,7 +15,7 @@ RSpec.describe "/users/:id", type: :feature do
 
       PartyUser.create!(party_id: @party2.id, user_id: @picard.id, host_id: @party2.host_id)
       PartyUser.create!(party_id: @party2.id, user_id: @riker.id, host_id: @party2.host_id)
-      PartyUser.create!(party_id: @party2.id, user_id: @data.id, host_id: @party2.host_id)
+      PartyUser.create!(party_id: @party2.id, user_id: @data.id, host_id: @party2.host_id) 
 
       visit "/users/#{@picard.id}"
     end

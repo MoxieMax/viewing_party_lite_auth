@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "/users/:id/movies", type: :feature do
   describe "as a user, when I visit the movie index page" do 
     before :each do
-      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com")
+      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com", password: "password123")
     end
     
     it "displays the first 20 top movies & vote average" do

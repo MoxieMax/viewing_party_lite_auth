@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "/users/:user_id/movies/:movie_id" do
   describe "as a user, when I visit a movie's show page" do 
     before :each do
-      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com")
+      @picard = User.create!(name: "Jean-Luc Picard", email: "captain@uss-enterprise.com", password: "password123")
 
       movie_response = File.read("spec/fixtures/moviedb/space_odyssey.json")
       stub_request(:get, "https://api.themoviedb.org/3/movie/62?api_key=#{ENV["TMDB_API_KEY"]}")
