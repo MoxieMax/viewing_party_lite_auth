@@ -4,6 +4,8 @@ class User < ApplicationRecord
                         :email,
                         :password_digest
   
+  validates :password_digest, presence: true
+  
   validates :email, uniqueness: true
   
   has_many :party_users

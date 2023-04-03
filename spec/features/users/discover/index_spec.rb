@@ -18,7 +18,7 @@ RSpec.describe "/users/:id/discover", type: :feature do
       top_movies = File.read("spec/fixtures/moviedb/top_movies.json")
       stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV["TMDB_API_KEY"]}&include_adult=false")
       .to_return(status: 200, body: top_movies, headers: {})
-
+      
       click_button("Find Top Rated Movies")
       expect(current_path).to eq("/users/#{@picard.id}/movies")
     end

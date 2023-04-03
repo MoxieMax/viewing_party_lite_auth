@@ -81,6 +81,20 @@ RSpec.describe "user registration page" do
         expect(page).to_not have_content("Name can't be blank")
         expect(page).to_not have_content("Email can't be blank")
       end
+      
+      it "won't create a user if passwords don't match" do
+        fill_in('Name', with: "Jeff Goldblum")
+        fill_in('Email', with: "JurassicSnark@jp.com")
+        fill_in('Password', with: 'password123', match: :prefer_exact)
+        fill_in('Password Confirmation', with: 'password124')
+        click_on("Create New User")
+        
+        expect(current_path).to eq(register_path)
+        expect(page).to have_content("Password confirmation doesn't match Password")
+        expect(page).to_not have_content("Password can't be blank")
+        expect(page).to_not have_content("Name can't be blank")
+        expect(page).to_not have_content("Email can't be blank")
+      end
     end
   end
 end
