@@ -46,6 +46,7 @@ RSpec.describe "/", type: :feature do
       click_link("Log In")
       
       expect(current_path).to eq(login_path)
+      
     end
   end
 end
