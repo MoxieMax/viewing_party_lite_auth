@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
-    @user_all_parties = @user.parties
+    if session[:user_id]
+      @user = User.find(params[:id])
+      @user_all_parties = @user.parties
+    else
+      flash[:alert] = "You must be logged in to access the dashboard."
+      redirect_to login_path
+    end
   end
   
   def new
@@ -12,6 +17,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
+      session[:user_id] = user.id
       flash.notice = 'User has been created!'
       redirect_to root_path
     else
@@ -27,7 +33,7 @@ class UsersController < ApplicationController
   def login
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
-      # session[:user_id] = user.id
+      session[:user_id] = user.id
       flash[:notice] = "Welcome, #{user.name}!"
       redirect_to user_path(user)
     else
@@ -35,10 +41,14 @@ class UsersController < ApplicationController
       render :login_form
     end
   end
+  
+  def logout
+    session.delete(:user_id)
+    redirect_to root_path
+  end
 
   private
   def user_params
-    params[:email].downcase!
     # params.require(:user).
     params.permit(:name, :email, :password, :password_confirmation)
   end

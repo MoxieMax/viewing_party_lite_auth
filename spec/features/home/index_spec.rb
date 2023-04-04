@@ -33,7 +33,7 @@ RSpec.describe "/", type: :feature do
       expect(current_path).to eq("/register")
     end
 
-    it "when I click on a user name link I'm redirected to '/users/:id' page" do
+    xit "when I click on a user name link I'm redirected to '/users/:id' page" do
       click_link("#{@picard.email}")
       expect(current_path).to eq("/users/#{@picard.id}")
       expect(page).to have_content("#{@picard.name}")

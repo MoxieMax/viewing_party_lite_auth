@@ -39,7 +39,7 @@ RSpec.describe "Login Form", type: :feature do
     end
   end
 end
-# 
+
 # @user1 = User.create!(id: 1,
 #                       name: "Gideon Nav", 
 #                       email: "cav-life@ninth.net",
