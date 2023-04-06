@@ -73,8 +73,12 @@ RSpec.describe "/", type: :feature do
         expect(page).to_not have_link("#{@user3.email}")
       end
       
-      # it "" do
-      # end
+      it "restricts dashboard access for visitors" do
+        visit "/users/#{@user1.id}"
+        
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("You must be logged in to access the dashboard.")
+      end
     end
   end
 end

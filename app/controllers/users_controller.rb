@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       @user_all_parties = @user.parties
     else
       flash[:alert] = "You must be logged in to access the dashboard."
-      redirect_to login_path
+      redirect_to root_path
     end
   end
   
@@ -54,13 +54,3 @@ class UsersController < ApplicationController
     params.permit(:name, :email, :password, :password_confirmation)
   end
 end
-
-# def login
-# if user && user.authenticate(params[:password])
-#   # session[:user_id] = user.id
-#   flash[:notice] = "Welcome, #{user.name}!"
-#   redirect_to user_path(user)
-# else
-#   flash[:notice] = "Your credentials are bad and you should feel bad."
-#   render :login_form
-# end

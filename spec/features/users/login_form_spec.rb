@@ -37,24 +37,3 @@ RSpec.describe "Login Form", type: :feature do
     end
   end
 end
-
-# @user1 = User.create!(id: 1,
-#                       name: "Gideon Nav", 
-#                       email: "cav-life@ninth.net",
-#                       password: 'password123'
-#                     )
-# @user2 = User.create!(id: 2,
-#                       name: "Harrowhark Nonagesimus", 
-#                       email: "revdaughter@ninth.net",
-#                       password: 'password123'
-#                     )
-# @user3 = User.create!(id: 3,
-#                       name: "Ianthe Tridentarius", 
-#                       email: "archenemy@third.com",
-#                       password: 'password123'
-#                     )
-# @user4 = User.create!(id: 4,
-#                       name: "Coronabeth Tridentarius", 
-#                       email: "goldenchild@third.com",
-#                       password: 'password123'
-#                     )
