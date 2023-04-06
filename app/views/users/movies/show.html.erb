@@ -1,30 +1,48 @@
 <body>
   <center><h3> <%= @the_movie.title %></h3></center>
+  
     <br>
+    
   <center><%= button_to "Discover Page", "/users/#{@user.id}/discover", method: :get %></center>
+  
     <br>
+    
   <center><%= button_to "Create Viewing Party for #{@the_movie.title}", "/users/#{@user.id}/movies/#{@the_movie.movie_id}/viewing_party/new", method: :get %></center>
+  
     <br>
+    
   <p>Vote: <%= @the_movie.vote_avg %></p> 
+  
     <br>
+    
   <p>Runtime: <%= (@the_movie.runtime / 60) %> hrs <%= (@the_movie.runtime % 60) %> mins</p>
+  
     <br>
+    
   <p>Genre:</p> 
     <% @the_movie.genres.each do |genre_hash|%>
       <p><%= genre_hash[:name] %></p>
     <% end %>
+    
     <br>
+    
   <h4>Summary</h4>
     <p><%= @the_movie.summary %></p>
+    
     <br>
+    
   <h4>Cast</h4>
     <% @the_movie.cast.each do |cast_hash| %>
       <p><%= cast_hash[:actor] %> as <%= cast_hash[:character] %></p>
     <% end %>
+
     <br>
+
   <h4><%= @the_movie.review_count %> Reviews</h4>
     <% @the_movie.reviews.each do |review_hash| %>
       <p><%= review_hash[:author] %>: <%= review_hash[:review] %></p>
+
       <br>
+
     <% end %>
 </body>

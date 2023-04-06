@@ -50,13 +50,30 @@ RSpec.describe "/users/:user_id/movies/:movie_id" do
     end
 
     it "when I click the discover button, I'm redirected to '/users/:id/discover' page" do
+      
+      
       click_button("Discover Page")
       expect(current_path).to eq("/users/#{@picard.id}/discover")
     end
 
     it "when I click the Viewing Party button, I'm redirected to '/users/:id/movies/:id/viewing-party/new' page" do
+      visit login_url
+      fill_in :email, with: @picard.email
+      fill_in :password, with: @picard.password
+      click_on "Log In"
+      
+      visit "/users/#{@picard.id}/movies/62"
+      
       click_button("Create Viewing Party for 2001: A Space Odyssey")
       expect(current_path).to eq("/users/#{@picard.id}/movies/62/viewing_party/new")
+    end
+    
+    it "prevents creation of viewing party by visitors" do
+      expect(page).to have_button("Create Viewing Party for 2001: A Space Odyssey")
+      click_button("Create Viewing Party for 2001: A Space Odyssey")
+      
+      expect(current_path).to eq("/users/#{@picard.id}/movies/62")
+      expect(page).to have_content("You must be logged in or registered to create a viewing party")
     end
   end
 end

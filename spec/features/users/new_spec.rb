@@ -23,7 +23,7 @@ RSpec.describe "user registration page" do
       click_on("Create New User")
 
       expect(current_path).to eq(root_path)
-      expect(page).to have_content("User has been created!")
+      expect(page).to have_content("Welcome, Lightning McQueen!")
     end
     
     it "won't create a user with an already used email" do

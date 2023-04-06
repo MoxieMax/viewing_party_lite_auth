@@ -2,7 +2,7 @@
 
 <body>
   <center><table>
-    <%= form_with url: "/register", method: :post, local: true do |f| %>
+    <%= form_with url: register_path, method: :post, local: true do |f| %>
     <tr>
       <td> <%= f.label :name %> </td>
       <td> <%= f.text_field :name %> </td>
@@ -12,12 +12,12 @@
       <td> <%= f.text_field :email %> </td>
     </tr>
     <tr>
-      <%= f.label :password, 'Password:' %>
-      <%= f.password_field :password %>
+      <td><%= f.label :password, 'Password:' %></td>
+      <td><%= f.password_field :password %></td>
     </tr>
     <tr>
-      <%= f.label :password_confirmation, 'Password Confirmation:' %>
-      <%= f.password_field :password_confirmation %>
+      <td><%= f.label :password_confirmation, 'Password Confirmation:' %></td>
+      <td><%= f.password_field :password_confirmation %></td>
     </tr>
     <tr>
       <td> <%= f.submit "Create New User" %> </td>
