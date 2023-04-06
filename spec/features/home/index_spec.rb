@@ -30,7 +30,6 @@ RSpec.describe "/", type: :feature do
       visit "/"
     end
     
-    
     it "should display title of app, link to home" do
       # save_and_open_page
       expect(page).to have_content("Viewing Party")
@@ -71,6 +70,15 @@ RSpec.describe "/", type: :feature do
       
       click_button("Create a New User")
       expect(current_path).to eq("/register")
+    end
+    
+    it "does not list existing users when no user is loged in" do
+      expect(page).to have_link("Log Out")
+      click_on "Log Out"
+      
+      expect(page).to_not have_link("#{@user1.email}")
+      expect(page).to_not have_link("#{@user2.email}")
+      expect(page).to_not have_link("#{@user3.email}")
     end
   end
 end
