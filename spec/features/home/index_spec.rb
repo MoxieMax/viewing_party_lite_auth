@@ -45,32 +45,36 @@ RSpec.describe "/", type: :feature do
       expect(page).to have_content("#{@user3.email}")
     end
     
-    it 'has a link to the login page when no user is logged in' do
-      expect(page).to have_link("Log Out")
-      click_on "Log Out"
+    describe "as a visitor" do
+      before :each do
+        expect(page).to have_link("Log Out")
+        click_on "Log Out"
+      end
       
-      expect(page).to have_link("Log In")
+      it 'has a link to the login page when no user is logged in' do
+        expect(page).to have_link("Log In")
+        
+        click_link("Log In")
+        
+        expect(current_path).to eq(login_path)
+      end
       
-      click_link("Log In")
+      it "when I click on the button I'm redirected to '/register' page" do
+        expect(page).to have_link("Log In")
+        
+        click_button("Create a New User")
+        
+        expect(current_path).to eq("/register")
+      end
       
-      expect(current_path).to eq(login_path)
-    end
-    
-    it "when I click on the button I'm redirected to '/register' page" do
-      expect(page).to have_link("Log Out")
-      click_on "Log Out"
+      it "does not list existing users when no user is loged in" do
+        expect(page).to_not have_link("#{@user1.email}")
+        expect(page).to_not have_link("#{@user2.email}")
+        expect(page).to_not have_link("#{@user3.email}")
+      end
       
-      click_button("Create a New User")
-      expect(current_path).to eq("/register")
-    end
-    
-    it "does not list existing users when no user is loged in" do
-      expect(page).to have_link("Log Out")
-      click_on "Log Out"
-      
-      expect(page).to_not have_link("#{@user1.email}")
-      expect(page).to_not have_link("#{@user2.email}")
-      expect(page).to_not have_link("#{@user3.email}")
+      # it "" do
+      # end
     end
   end
 end
