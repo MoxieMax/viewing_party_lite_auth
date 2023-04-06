@@ -40,17 +40,9 @@ RSpec.describe "/", type: :feature do
     end
     
     it "should show a list of existing users with links to their show pages" do
-      expect(page).to have_link("#{@user1.email}")
-      expect(page).to have_link("#{@user2.email}")
-      expect(page).to have_link("#{@user3.email}")
-    end
-    
-    it "when I click on a user name link I'm redirected to '/users/:id' page" do
-      click_link("#{@user1.email}")
-      
-      expect(current_path).to eq("/users/#{@user1.id}")
-      expect(page).to have_content("#{@user1.name}")
-      expect(page).to_not have_content("#{@user2.name}")
+      expect(page).to have_content("#{@user1.email}")
+      expect(page).to have_content("#{@user2.email}")
+      expect(page).to have_content("#{@user3.email}")
     end
     
     it 'has a link to the login page when no user is logged in' do

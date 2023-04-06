@@ -5,7 +5,7 @@
     <h4>Existing Users</h4>
     <ul>
       <% @users.each do |user| %>
-        <p><%= link_to user.email, "/users/#{user.id}" %>
+        <p><%= "#{user.email}" %>
       <% end %>
     </ul>
   </div>
