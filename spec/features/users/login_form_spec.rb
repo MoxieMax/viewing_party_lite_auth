@@ -21,7 +21,6 @@ RSpec.describe "Login Form", type: :feature do
     it "is fillable and will authenticate in a user" do
       fill_in(:email, with: @user1.email)
       fill_in("Password", with: @user1.password)
-      # save_and_open_page
       click_on("Log In")
       
       expect(current_path).to eq(user_path(@user1))
@@ -31,7 +30,6 @@ RSpec.describe "Login Form", type: :feature do
     it "will not authenticate with improper credentials" do
       fill_in(:email, with: @user1.email)
       fill_in("Password", with: "Harrowhark")
-      # save_and_open_page
       click_on("Log In")
       
       expect(current_path).to eq(login_path)
