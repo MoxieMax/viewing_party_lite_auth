@@ -33,9 +33,9 @@ class UsersController < ApplicationController
   def login
     user = User.find_by(email: params[:email])
     
-    if user.authenticate(params[:password])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "Welcome, #{user.name}!"
+      flash[:notice] = "Welcome, #{user.name}!"
       redirect_to user_path(user)
     else
       flash[:error] = "Your credentials are bad and you should feel bad."
@@ -43,10 +43,10 @@ class UsersController < ApplicationController
     end
   end
   
-  # def logout
-  #   session.delete(:user_id)
-  #   redirect_to root_path
-  # end
+  def logout
+    session.delete(:user_id)
+    redirect_to root_path
+  end
 
   private
   def user_params
